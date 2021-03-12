@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="src/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+    <% if (process.env.SYSTEMJS === 'true') { %>
+    <meta name="importmap-type" content="systemjs-importmap" />
+    <script type="<% if (process.env.SYSTEMJS === 'true') { %>systemjs-<% } %>importmap">
+      {
+        "imports": {
+          "react": "https://cdn.jsdelivr.net/npm/react@17.0.1/umd/react.development.js",
+          "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@17.0.1/umd/react-dom.development.js",
+          "App": "http://localhost:5001/app.system.js",
+          "@foo/ui": "http://localhost:5002/ui.system.js"
+        }
+      }
+    </script>
+    <% } %>
+    <% if (process.env.IMPORTMAP_OVERRIDES === 'true') { %>
+    <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.3.1/dist/import-map-overrides.js"></script>
+    <% } %>
+    <% if (process.env.SYSTEMJS === 'true') { %>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js"></script>
+    <% } %>
+    <script type="module">
+    <% if (process.env.SYSTEMJS === 'true') { %>
+      System.import('App');
+    <% } else { %>
+      import 'http://localhost:5000/src/main.jsx';
+    <% } %>
+  </script>
+  </head>
+  <body>
+    <% if (process.env.IMPORTMAP_OVERRIDES === 'true') { %>
+    <import-map-overrides-full show-when-local-storage="devtools" dev-libs=""></import-map-overrides-full>
+    <% } %>
+    <div id="root"></div>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "@foo/index",
+  "version": "0.0.0",
+  "scripts": {
+    "dev:start": "npm run compile && npm run serve",
+    "dev": "IMPORTMAP_OVERRIDES=true SYSTEMJS=false nodemon --watch ./template/index.ejs --exec npm run dev:start",
+    "compile": "npm run mkdir && ejs ./template/index.ejs -f data_file.json -o ./dist/index.html",
+    "build": "SYSTEMJS=true npm run compile",
+    "serve": "serve dist -l 5000",
+    "mkdir": "mkdir -p dist"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "serve": "^11.3.2"
+  }
+}
