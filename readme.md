@@ -28,6 +28,7 @@ Have a look at projects like [snowpack](https://www.snowpack.dev/) and [vitejs](
 #### Requirements
 
 I want to test a microfrontend architecture that allow me get the benefits of unbundled development while requiring old browser support, i.e. systemjs bundles.
+Being able to develop umbundled would enable me for a smooth transition from systemjs to es modules when I will not be required to support old browsers.
 
 #### What I did
 
